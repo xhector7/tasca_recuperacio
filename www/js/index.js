@@ -37,3 +37,29 @@ function onDeviceReady() {
     document.getElementById("guardar")
         .addEventListener("click", guardarContacte);
 }
+
+function guardarContacte() {
+
+    let nom = document.getElementById("nom").value;
+    let telefon = document.getElementById("telefon").value;
+    let email = document.getElementById("email").value;
+
+    let contacte = { nom, telefon, email };
+
+    if (editIndex === null) {
+        contactes.push(contacte);
+    } else {
+        contactes[editIndex] = contacte;
+        editIndex = null;
+    }
+
+    localStorage.setItem("contactes", JSON.stringify(contactes));
+
+    mostrarContactes();
+
+    M.Modal.getInstance(document.getElementById('modal1')).close();
+
+    document.getElementById("nom").value = "";
+    document.getElementById("telefon").value = "";
+    document.getElementById("email").value = "";
+}
