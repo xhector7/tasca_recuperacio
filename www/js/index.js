@@ -63,3 +63,28 @@ function guardarContacte() {
     document.getElementById("telefon").value = "";
     document.getElementById("email").value = "";
 }
+
+function mostrarContactes() {
+
+    let html = "";
+
+    contactes.forEach((c, index) => {
+
+        html += `
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">${c.nom}</span>
+            <p>${c.telefon}</p>
+            <p>${c.email}</p>
+          </div>
+
+          <div class="card-action">
+            <button onclick="editar(${index})" class="btn blue">Editar</button>
+            <button onclick="borrar(${index})" class="btn red">Eliminar</button>
+          </div>
+        </div>
+        `;
+    });
+
+    document.getElementById("llistaContactes");
+}
