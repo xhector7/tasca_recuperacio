@@ -32,7 +32,7 @@ function onDeviceReady() {
 
     M.AutoInit();
 
-    carregarContactes();
+    cargaContactes();
 
     document.getElementById("guardar")
         .addEventListener("click", guardarContacte);
@@ -64,7 +64,7 @@ function guardarContacte() {
     document.getElementById("email").value = "";
 }
 
-function mostrarContactes() {
+function veureContactes() {
 
     let html = "";
 
@@ -85,6 +85,15 @@ function mostrarContactes() {
         </div>
         `;
     });
+    document.getElementById("llistaContactes").innerHTML = html;
+}
 
-    document.getElementById("llistaContactes");
+function cargaContactes() {
+
+    let dades = localStorage.getItem("contactes");
+
+    if (dades) {
+        contactes = JSON.parse(dades);
+    }
+    veureContactes();
 }
