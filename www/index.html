@@ -32,29 +32,42 @@
 
   <div class="container">
 
-    <h4>Agenda de contactes</h4>
+    <h3>Agenda de contactes</h3>
 
-    <a class="btn-floating btn-large red modal-trigger" href="#modal1">
-      <i class="material-icons">add</i>
-    </a>
+    <div class="card">
+        <div class="card-content">
+
+            <span class="card-title">Nou contacte</span>
+
+            <div class="row">
+
+                <div class="input-field col s12 m4">
+                    <input id="nom" type="text">
+                    <label for="nom">Nom</label>
+                </div>
+
+                <div class="input-field col s12 m4">
+                    <input id="telefon" type="text">
+                    <label for="telefon">Telèfon</label>
+                </div>
+
+                <div class="input-field col s12 m4">
+                    <input id="email" type="email">
+                    <label for="email">Email</label>
+                </div>
+
+            </div>
+
+            <button id="guardar" class="btn">
+                Guardar
+            </button>
+
+        </div>
+    </div>
 
     <div id="llistaContactes"></div>
 
-  </div>
-
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-
-      <h5>Nou contacte</h5>
-
-      <input id="nom" placeholder="Nom">
-      <input id="telefon" placeholder="Telèfon">
-      <input id="email" placeholder="Email">
-
-      <button id="guardar" class="btn">Guardar</button>
-
-    </div>
-  </div>
+</div>
 
 
   <script src="cordova.js"></script>
