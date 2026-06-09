@@ -25,16 +25,13 @@ let contactes = [];
 let editIndex = null;
 
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
 
     M.AutoInit();
 
     cargaContactes();
 
-    document.getElementById("guardar")
+    document
+        .getElementById("guardar")
         .addEventListener("click", guardarContacte);
 }
 
@@ -44,7 +41,11 @@ function guardarContacte() {
     let telefon = document.getElementById("telefon").value;
     let email = document.getElementById("email").value;
 
-    let contacte = { nom, telefon, email };
+    let contacte = {
+        nom,
+        telefon,
+        email
+    };
 
     if (editIndex === null) {
         contactes.push(contacte);
@@ -53,11 +54,18 @@ function guardarContacte() {
         editIndex = null;
     }
 
-    localStorage.setItem("contactes", JSON.stringify(contactes));
+    localStorage.setItem(
+        "contactes",
+        JSON.stringify(contactes)
+    );
 
-    mostrarContactes();
+    veureContactes();
 
-    M.Modal.getInstance(document.getElementById('modal1')).close();
+    M.Modal
+        .getInstance(
+            document.getElementById("modal1")
+        )
+        .close();
 
     document.getElementById("nom").value = "";
     document.getElementById("telefon").value = "";
@@ -72,29 +80,37 @@ function veureContactes() {
 
         html += `
         <div class="card">
-          <div class="card-content">
-            <span class="card-title">${c.nom}</span>
-            <p>${c.telefon}</p>
-            <p>${c.email}</p>
-          </div>
+            <div class="card-content">
+                <span class="card-title">${c.nom}</span>
+                <p>${c.telefon}</p>
+                <p>${c.email}</p>
+            </div>
 
-          <div class="card-action">
-            <button onclick="editar(${index})" class="btn blue">Editar</button>
-            <button onclick="borrar(${index})" class="btn red">Eliminar</button>
-          </div>
+            <div class="card-action">
+                <button onclick="editar(${index})" class="btn">
+                    Editar
+                </button>
+
+                <button onclick="borrar(${index})" class="btn red">
+                    Eliminar
+                </button>
+            </div>
         </div>
         `;
     });
+
     document.getElementById("llistaContactes").innerHTML = html;
 }
 
 function cargaContactes() {
 
-    let dades = localStorage.getItem("contactes");
+    let dades =
+        localStorage.getItem("contactes");
 
     if (dades) {
         contactes = JSON.parse(dades);
     }
+
     veureContactes();
 }
 
@@ -108,15 +124,21 @@ function editar(index) {
 
     editIndex = index;
 
-    let modal = M.Modal.getInstance(document.getElementById('modal1'));
-    modal.open();
+    M.Modal
+        .getInstance(
+            document.getElementById("modal1")
+        )
+        .open();
 }
 
 function borrar(index) {
 
     contactes.splice(index, 1);
 
-    localStorage.setItem("contactes", JSON.stringify(contactes));
+    localStorage.setItem(
+        "contactes",
+        JSON.stringify(contactes)
+    );
 
-    mostrarContactes();
+    veureContactes();
 }
