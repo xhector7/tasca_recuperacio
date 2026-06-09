@@ -97,3 +97,26 @@ function cargaContactes() {
     }
     veureContactes();
 }
+
+function editar(index) {
+
+    let c = contactes[index];
+
+    document.getElementById("nom").value = c.nom;
+    document.getElementById("telefon").value = c.telefon;
+    document.getElementById("email").value = c.email;
+
+    editIndex = index;
+
+    let modal = M.Modal.getInstance(document.getElementById('modal1'));
+    modal.open();
+}
+
+function borrar(index) {
+
+    contactes.splice(index, 1);
+
+    localStorage.setItem("contactes", JSON.stringify(contactes));
+
+    mostrarContactes();
+}
